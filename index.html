@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>MQTT (NETPIE)</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <script src="jquery-1.12.0.min.js"></script>
+
+    <script src="microgear.js"></script>
+    <script type="text/javascript">
+
+      /*------------- Setting NETPIE -----------*/
+      var NETPIE_NAME = "htmlgear";
+      var CHAT_TO     = "esp8266";
+      var APPID       = "WebApp";
+      var APPKEY      = "24dxjlLA3LAvyWk";
+      var APPSECRET   = "aAU6wX2Iynl9KJXwNXW7fUSW8";
+      /*----------------------------------------*/
+
+      /*------------- Setting Show Content ----------*/
+      var CONTENT_ID  = "data";
+      /*----------------------------------------*/
+
+      $(document).ready(function(){
+        function SEND(data) {
+          microgear.chat(CHAT_TO,data);
+        }
+
+        /*---------- Insert Code ----------*/
+        $("#btn_led_on").click(function(){
+          SEND("LED_ON");
+        });
+        $("#btn_led_off").click(function(){
+          SEND("LED_OFF");
+        });
+        $("#btn_msg_send").click(function(){
+          var msg = $("#txt_data").val();
+          SEND(msg);
+          $("#txt_data").val("");
+        });
+        /*---------------------------------*/
+
+      });
+
+    </script>
+    <script src="easy_config.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-xs-12 col-md-12" style="//border: 1px solid #abc; margin-top: 25px;">
+          <img style="background-color:#abc; width:100%; height:150px;">
+        </div>
+
+        <div class="col-xs-12 col-md-2" style="margin-top: 25px;">
+          <ul class="list-group">
+            <li class="list-group-item"><a href="#"><b>Home</b></a></li>
+            <li class="list-group-item"><a href="#">Link 1</a></li>
+            <li class="list-group-item"><a href="#">Link 2</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-12 col-md-10" style="margin-top: 25px;">
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <b>Incoming Message</b>
+            </div>
+            <div class="panel-body">
+              <div id="data" class="col-xs-12 col-md-12">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <b>LED Control</b>
+            </div>
+            <div class="panel-body">
+              <div class="col-xs-6 col-md-6">
+                <button id="btn_led_on" class="btn btn-success" style="width:100%; height:40px;"><b>LED ON</b></button>
+              </div>
+              <div class="col-xs-6 col-md-6">
+                <button id="btn_led_off" class="btn btn-danger" style="width:100%; height:40px;"><b>LED Off</b></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <b>Send Message</b>
+            </div>
+            <div class="panel-body">
+              <div class="col-xs-6 col-md-6">
+                <input type="text" class="form-control" id="txt_data" placeholder="Insert message ..." />
+              </div>
+              <div class="col-xs-6 col-md-6" >
+                <button id="btn_msg_send" class="btn btn-info" style="width:100%; height:40px;"><b>SEND</b></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+
+</html>
